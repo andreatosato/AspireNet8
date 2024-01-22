@@ -1,0 +1,9 @@
+{
+  "TemplatePath": null,
+  "ContainerSettings": {
+    "Registry": "aspireitconf.azurecr.io",
+    "RepositoryPrefix": null,
+    "Tag": null,
+    "Builder": "docker"
+  }
+}

@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+      - name: prometheus
+        image: prom/prometheus:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9090
+        #envFrom:
+        #- configMapRef:
+        #    name: prometheus-env
+        volumeMounts:
+          - mountPath: /etc/prometheus
+            name: prometheus-volume
+      volumes:
+      - name: prometheus-volume
+        configMap:
+          name: prometheus-env
+      terminationGracePeriodSeconds: 180

@@ -1,0 +1,10 @@
+kubectl create secret docker-registry acr-registry --docker-server=aspireitconf.azurecr.io --docker-username=aspireITconf --docker-password=ahFt8WZFHK5QKI9eQy1cZEOVJo5tB4MKDxNxrRLezP+ACRAb/a6l
+
+kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-nginx-controller 8443:443
+
+kubectl port-forward app-web-5f87564c9b-25n8f 8088:80
+
+
+
+http://prometheus.default.svc.cluster.local:9090
+http://grafana.default.svc.cluster.local:3000
